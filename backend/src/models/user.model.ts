@@ -1,13 +1,15 @@
 import crypto from "crypto";
-import mongoose, { Document, Model, Schema } from "mongoose";
+import mongoose, { Document, Model, Schema, Types } from "mongoose";
 import bcrypt from "bcryptjs";
 
 export interface IUser extends Document {
+  _id: Types.ObjectId;
   name?: string;
   username: string;
+  email: string;
   password: string;
-  refresh_token?: string;
-  password_reset_token?: string;
+  refresh_token?: string | null;
+  password_reset_token?: string | null;
   password_reset_expires?: Date;
 
   comparePassword(candidatePassword: string): Promise<boolean>;
@@ -17,6 +19,7 @@ export interface IUser extends Document {
 const userSchema = new Schema<IUser>({
   name: { type: String },
   username: { type: String, required: true, unique: true },
+  email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   refresh_token: { type: String },
   password_reset_token: { type: String },
@@ -30,12 +33,13 @@ userSchema.pre<IUser>("save", async function (next) {
 });
 
 userSchema.methods.comparePassword = function (
+  this: IUser,
   candidatePassword: string
 ): Promise<boolean> {
   return bcrypt.compare(candidatePassword, this.password);
 };
 
-userSchema.methods.createPasswordResetToken = function (): string {
+userSchema.methods.createPasswordResetToken = function (this: IUser): string {
   const resetToken = crypto.randomBytes(32).toString("hex");
   this.password_reset_token = crypto
     .createHash("sha256")
