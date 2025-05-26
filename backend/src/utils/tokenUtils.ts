@@ -1,7 +1,13 @@
 import { config } from "dotenv";
-import { sign, SignOptions } from "jsonwebtoken";
+import { sign, SignOptions, verify, JwtPayload } from "jsonwebtoken";
+import { APIError } from "./APIError";
+import { httpStatus } from "./httpStatus";
 
 config();
+
+interface TokenPayload extends JwtPayload {
+  userId: string;
+}
 
 const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET!;
 const REFRESH_TOKEN_SECRET = process.env.REFRESH_TOKEN_SECRET!;
@@ -60,4 +66,27 @@ export const generateAccessToken = (userId: string): string => {
 
 export const generateRefreshToken = (userId: string): string => {
   return sign({ userId }, REFRESH_TOKEN_SECRET, refreshTokenOptions);
+};
+
+export const verifyRefreshToken = (token: string): TokenPayload => {
+  try {
+    const payload = verify(token, REFRESH_TOKEN_SECRET) as TokenPayload;
+    return payload;
+  } catch (err) {
+    throw new APIError(
+      httpStatus.UNAUTHORIZED,
+      "Invalid or expired refresh token"
+    );
+  }
+};
+export const verifyAccessToken = (token: string): TokenPayload => {
+  try {
+    const payload = verify(token, ACCESS_TOKEN_SECRET) as TokenPayload;
+    return payload;
+  } catch (err) {
+    throw new APIError(
+      httpStatus.UNAUTHORIZED,
+      "Invalid or expired access token"
+    );
+  }
 };
