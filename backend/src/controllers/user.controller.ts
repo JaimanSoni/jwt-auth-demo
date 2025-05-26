@@ -116,7 +116,7 @@ export const login = asyncHandler(async (req: Request, res: Response) => {
 });
 
 export const logout = asyncHandler(async (req: Request, res: Response) => {
-  const refresh_token = req.cookies.refreshToken;
+  const refresh_token = req.cookies?.refreshToken;
 
   if (!refresh_token) {
     return res
@@ -143,29 +143,39 @@ export const logout = asyncHandler(async (req: Request, res: Response) => {
 
 export const refreshAccessToken = asyncHandler(
   async (req: Request, res: Response) => {
-    try {
-      const token = req.cookies.refreshToken;
-      if (!token) return res.status(403).json({ message: "No token" });
-
-      // const payload = verify(token, process.env.JWT_REFRESH_SECRET);
-      const payload = verifyRefreshToken(token);
-      const user = await User.findById(payload.userId);
-      if (!user || user.refresh_token !== token) {
-        return res.status(403).json({ message: "Invalid refresh token" });
-      }
-      const id = user._id.toString();
-      const newAccessToken = generateAccessToken(id);
-      const newRefreshToken = generateRefreshToken(id);
-      user.refresh_token = newRefreshToken;
-      await user.save();
-
-      res.cookie("refreshToken", newRefreshToken, refreshTokenCookieOptions);
-      res.cookie("accessToken", newAccessToken, accessTokenCookieOptions);
-
-      res.json({ accessToken: newAccessToken });
-    } catch (err) {
-      res.status(403).json({ message: "Token expired or invalid" });
+    const token = req.cookies?.refreshToken;
+    console.log("Incoming Token: ", token);
+    if (!token) {
+      return res.status(403).json({ message: "No refresh token found" });
     }
+
+    let payload;
+    try {
+      payload = verifyRefreshToken(token);
+    } catch (err) {
+      return res
+        .status(403)
+        .json({ message: "Invalid or expired refresh token" });
+    }
+    console.log("Payload", payload);
+    const user = await User.findById(payload.userId);
+    console.log("User", token);
+    console.log("Cient", user?.refresh_token);
+    if (!user || user.refresh_token !== token) {
+      return res.status(403).json({ message: "Refresh token mismatch" });
+    }
+
+    const userId = user._id.toString();
+    const newAccessToken = generateAccessToken(userId);
+    const newRefreshToken = generateRefreshToken(userId);
+
+    user.refresh_token = newRefreshToken;
+    await user.save();
+
+    res.cookie("refreshToken", newRefreshToken, refreshTokenCookieOptions);
+    res.cookie("accessToken", newAccessToken, accessTokenCookieOptions);
+
+    return res.status(200).json({ accessToken: newAccessToken });
   }
 );
 
@@ -179,25 +189,23 @@ export const forgetPassword = asyncHandler(
     await user.save();
     await sendResetEmail(email, resetToken);
 
-    res.json({ message: "Reset email sent" });
+    res.json({ message: "Reset email sent", token: resetToken });
   }
 );
 
 export const resetPassword = asyncHandler(
   async (req: Request, res: Response) => {
-    console.log(req.params)
+    console.log(req.params);
     const hashedToken = crypto
       .createHash("sha256")
       .update(req.params.token)
       .digest("hex");
     const user = await User.findOne({
-      passwordResetToken: hashedToken,
-      passwordResetExpires: { $gt: Date.now() },
+      password_reset_token: hashedToken,
+      password_reset_expires: { $gt: Date.now() },
     });
-
     if (!user)
       return res.status(400).json({ message: "Token invalid or expired" });
-
     user.password = req.body.password;
     user.password_reset_token = undefined;
     user.password_reset_expires = undefined;
