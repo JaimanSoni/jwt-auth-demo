@@ -11,7 +11,7 @@ This repository provides a complete starter kit for implementing authentication 
 ## 🌐 Live Demo
 
 - **Frontend**: [https://jwt-auth-starter.vercel.app/](https://jwt-auth-starter.vercel.app/)
-
+- **Docs**: [https://jwt-auth-starter.vercel.app/docs](https://jwt-auth-starter.vercel.app/docs)
 ---
 
 ## 📦 Features
