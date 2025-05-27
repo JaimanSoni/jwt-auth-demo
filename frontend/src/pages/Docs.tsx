@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -27,7 +25,6 @@ import {
   Download,
   Zap,
   Globe,
-  Server,
 } from "lucide-react";
 
 export function DocsPage() {
@@ -51,7 +48,7 @@ export function DocsPage() {
               </div>
               <div>
                 <h1 className="text-xl font-bold text-gray-900">
-                  JWT Auth Demo
+                  JWT Auth Starter
                 </h1>
                 <p className="text-sm text-gray-600">Documentation</p>
               </div>
@@ -82,8 +79,8 @@ export function DocsPage() {
             <h2 className="text-4xl font-bold mb-4">Documentation</h2>
             <p className="text-indigo-100 text-lg max-w-2xl mx-auto">
               Complete guide to implementing and customizing the JWT
-              Authentication Demo. Learn how to integrate secure authentication
-              into your applications.
+              Authentication Starter. Learn how to integrate secure
+              authentication into your applications.
             </p>
           </div>
         </div>
@@ -164,13 +161,7 @@ export function DocsPage() {
                     href="#installation"
                     className="block text-sm text-gray-600 hover:text-gray-800 pl-3"
                   >
-                    Installation
-                  </a>
-                  <a
-                    href="#configuration"
-                    className="block text-sm text-gray-600 hover:text-gray-800 pl-3"
-                  >
-                    Configuration
+                    Installation and Configuration
                   </a>
                 </div>
                 <div className="space-y-1">
@@ -215,20 +206,8 @@ export function DocsPage() {
                 </div>
                 <div className="space-y-1">
                   <a
-                    href="#deployment"
-                    className="block text-sm text-blue-600 hover:text-blue-800 font-medium"
-                  >
-                    Deployment
-                  </a>
-                  <a
-                    href="#docker"
-                    className="block text-sm text-gray-600 hover:text-gray-800 pl-3"
-                  >
-                    Docker
-                  </a>
-                  <a
                     href="#production"
-                    className="block text-sm text-gray-600 hover:text-gray-800 pl-3"
+                    className="block text-sm text-blue-600 hover:text-blue-800 font-medium"
                   >
                     Production
                   </a>
@@ -248,15 +227,15 @@ export function DocsPage() {
                     Getting Started
                   </CardTitle>
                   <CardDescription>
-                    Follow these steps to set up the JWT Authentication Demo on
-                    your local machine
+                    Follow these steps to set up the JWT Authentication Starter
+                    on your local machine
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   <div id="installation">
                     <h3 className="text-lg font-semibold mb-3 flex items-center">
                       <Download className="h-5 w-5 mr-2 text-blue-600" />
-                      Installation
+                      Installation and Configuration
                     </h3>
                     <div className="space-y-4">
                       <div>
@@ -266,15 +245,15 @@ export function DocsPage() {
                         <div className="bg-gray-900 rounded-lg p-4 relative">
                           <code className="text-green-400 text-sm font-mono">
                             git clone
-                            https://github.com/yourusername/jwt-auth-demo.git
+                            https://github.com/JaimanSoni/jwt-auth-starter.git
                           </code>
                           <Button
                             size="sm"
                             variant="ghost"
-                            className="absolute top-2 right-2 text-gray-400 hover:text-white"
+                            className="absolute top-2 right-2 text-gray-400 "
                             onClick={() =>
                               copyToClipboard(
-                                "git clone https://github.com/yourusername/jwt-auth-demo.git",
+                                "git clone https://github.com/JaimanSoni/jwt-auth-starter.git",
                                 "clone"
                               )
                             }
@@ -290,18 +269,26 @@ export function DocsPage() {
 
                       <div>
                         <p className="text-sm text-gray-600 mb-2">
-                          2. Navigate to project directory
+                          2. Navigate to backend project directory and install
+                          dependencies
                         </p>
                         <div className="bg-gray-900 rounded-lg p-4 relative">
                           <code className="text-green-400 text-sm font-mono">
-                            cd jwt-auth-demo
+                            cd backend
+                            <br />
+                            npm install
+                            <br />
+                            cp .env.sample .env
                           </code>
                           <Button
                             size="sm"
                             variant="ghost"
-                            className="absolute top-2 right-2 text-gray-400 hover:text-white"
+                            className="absolute top-2 right-2 text-gray-400 "
                             onClick={() =>
-                              copyToClipboard("cd jwt-auth-demo", "cd")
+                              copyToClipboard(
+                                "cd backend && npm install && cp .env.sample .env",
+                                "cd"
+                              )
                             }
                           >
                             {copiedCode === "cd" ? (
@@ -312,107 +299,37 @@ export function DocsPage() {
                           </Button>
                         </div>
                       </div>
-
                       <div>
                         <p className="text-sm text-gray-600 mb-2">
-                          3. Install dependencies
+                          3. Navigate to frontend project directory and install
+                          dependencies
                         </p>
                         <div className="bg-gray-900 rounded-lg p-4 relative">
                           <code className="text-green-400 text-sm font-mono">
-                            npm install && cd client && npm install
+                            cd frontend
+                            <br />
+                            npm install
+                            <br />
+                            cp .env.sample .env
                           </code>
                           <Button
                             size="sm"
                             variant="ghost"
-                            className="absolute top-2 right-2 text-gray-400 hover:text-white"
+                            className="absolute top-2 right-2 text-gray-400 "
                             onClick={() =>
                               copyToClipboard(
-                                "npm install && cd client && npm install",
-                                "install"
+                                "cd frontend \n npm install \n cp .env.sample .env",
+                                "cd"
                               )
                             }
                           >
-                            {copiedCode === "install" ? (
+                            {copiedCode === "cd" ? (
                               <CheckCircle className="h-4 w-4" />
                             ) : (
                               <Copy className="h-4 w-4" />
                             )}
                           </Button>
                         </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <Separator />
-
-                  <div id="configuration">
-                    <h3 className="text-lg font-semibold mb-3 flex items-center">
-                      <Settings className="h-5 w-5 mr-2 text-gray-600" />
-                      Configuration
-                    </h3>
-                    <div className="space-y-4">
-                      <p className="text-gray-600">
-                        Create a{" "}
-                        <code className="bg-gray-100 px-2 py-1 rounded text-sm">
-                          .env
-                        </code>{" "}
-                        file in the root directory:
-                      </p>
-                      <div className="bg-gray-900 rounded-lg p-4 relative">
-                        <pre className="text-green-400 text-sm font-mono">
-                          {`# Database
-MONGODB_URI=mongodb://localhost:27017/jwt-auth-demo
-
-# JWT Configuration
-JWT_SECRET=your-super-secret-jwt-key
-JWT_EXPIRE=7d
-JWT_REFRESH_EXPIRE=30d
-
-# Email Configuration
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-SMTP_USER=your-email@gmail.com
-SMTP_PASS=your-app-password
-
-# Application
-NODE_ENV=development
-PORT=5000
-CLIENT_URL=http://localhost:3000`}
-                        </pre>
-                        <Button
-                          size="sm"
-                          variant="ghost"
-                          className="absolute top-2 right-2 text-gray-400 hover:text-white"
-                          onClick={() =>
-                            copyToClipboard(
-                              `# Database
-MONGODB_URI=mongodb://localhost:27017/jwt-auth-demo
-
-# JWT Configuration
-JWT_SECRET=your-super-secret-jwt-key
-JWT_EXPIRE=7d
-JWT_REFRESH_EXPIRE=30d
-
-# Email Configuration
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-SMTP_USER=your-email@gmail.com
-SMTP_PASS=your-app-password
-
-# Application
-NODE_ENV=development
-PORT=5000
-CLIENT_URL=http://localhost:3000`,
-                              "env"
-                            )
-                          }
-                        >
-                          {copiedCode === "env" ? (
-                            <CheckCircle className="h-4 w-4" />
-                          ) : (
-                            <Copy className="h-4 w-4" />
-                          )}
-                        </Button>
                       </div>
                     </div>
                   </div>
@@ -460,7 +377,7 @@ CLIENT_URL=http://localhost:3000`,
                             Refresh Token
                           </h4>
                           <ul className="text-sm text-green-800 space-y-1">
-                            <li>• Long-lived (30 days)</li>
+                            <li>• Long-lived (7 days)</li>
                             <li>• Used to get new access tokens</li>
                             <li>• Stored in httpOnly cookie</li>
                             <li>• Can be revoked</li>
@@ -556,38 +473,38 @@ CLIENT_URL=http://localhost:3000`,
                       {[
                         {
                           method: "POST",
-                          endpoint: "/api/auth/register",
+                          endpoint: "/v1/auth/register",
                           description: "Register a new user account",
                           color: "green",
                         },
                         {
                           method: "POST",
-                          endpoint: "/api/auth/login",
+                          endpoint: "/v1/auth/login",
                           description: "Authenticate user and return tokens",
                           color: "blue",
                         },
                         {
-                          method: "POST",
-                          endpoint: "/api/auth/refresh",
+                          method: "GET",
+                          endpoint: "/v1/auth/refresh-token",
                           description:
                             "Refresh access token using refresh token",
                           color: "purple",
                         },
                         {
                           method: "POST",
-                          endpoint: "/api/auth/logout",
+                          endpoint: "/v1/auth/logout",
                           description: "Logout user and invalidate tokens",
                           color: "red",
                         },
                         {
                           method: "POST",
-                          endpoint: "/api/auth/forgot-password",
+                          endpoint: "/v1/auth/forgot-password",
                           description: "Request password reset email",
                           color: "orange",
                         },
                         {
                           method: "POST",
-                          endpoint: "/api/auth/reset-password",
+                          endpoint: "/v1/auth/reset-password",
                           description: "Reset password with token",
                           color: "indigo",
                         },
@@ -629,28 +546,24 @@ CLIENT_URL=http://localhost:3000`,
 Content-Type: application/json
 
 {
-  "firstName": "John",
-  "lastName": "Doe",
+  "name": "Jaiman Soni",
   "email": "john.doe@company.com",
   "password": "SecurePassword123!",
-  "company": "Acme Corporation"
 }`}
                           </pre>
                           <Button
                             size="sm"
                             variant="ghost"
-                            className="absolute top-2 right-2 text-gray-400 hover:text-white"
+                            className="absolute top-2 right-2 text-gray-400 "
                             onClick={() =>
                               copyToClipboard(
                                 `POST /api/auth/register
 Content-Type: application/json
 
 {
-  "firstName": "John",
-  "lastName": "Doe",
+  "name": "Jaiman Soni",
   "email": "john.doe@company.com",
   "password": "SecurePassword123!",
-  "company": "Acme Corporation"
 }`,
                                 "register"
                               )
@@ -680,7 +593,7 @@ Content-Type: application/json
                           <Button
                             size="sm"
                             variant="ghost"
-                            className="absolute top-2 right-2 text-gray-400 hover:text-white"
+                            className="absolute top-2 right-2 text-gray-400 "
                             onClick={() =>
                               copyToClipboard(
                                 `POST /api/auth/login
@@ -714,64 +627,11 @@ Content-Type: application/json
                 <CardHeader>
                   <CardTitle className="flex items-center text-2xl">
                     <Globe className="h-6 w-6 mr-3 text-green-600" />
-                    Deployment
+                    Production Checklist
                   </CardTitle>
-                  <CardDescription>
-                    Deploy your JWT Auth Demo to production environments
-                  </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
-                  <div id="docker">
-                    <h3 className="text-lg font-semibold mb-3 flex items-center">
-                      <Server className="h-5 w-5 mr-2 text-blue-600" />
-                      Docker Deployment
-                    </h3>
-                    <div className="space-y-4">
-                      <p className="text-gray-600">
-                        Use Docker for easy deployment and scaling:
-                      </p>
-                      <div className="bg-gray-900 rounded-lg p-4 relative">
-                        <pre className="text-green-400 text-sm font-mono">
-                          {`# Build and run with Docker Compose
-docker-compose up -d
-
-# Or build manually
-docker build -t jwt-auth-demo .
-docker run -p 5000:5000 jwt-auth-demo`}
-                        </pre>
-                        <Button
-                          size="sm"
-                          variant="ghost"
-                          className="absolute top-2 right-2 text-gray-400 hover:text-white"
-                          onClick={() =>
-                            copyToClipboard(
-                              `# Build and run with Docker Compose
-docker-compose up -d
-
-# Or build manually
-docker build -t jwt-auth-demo .
-docker run -p 5000:5000 jwt-auth-demo`,
-                              "docker"
-                            )
-                          }
-                        >
-                          {copiedCode === "docker" ? (
-                            <CheckCircle className="h-4 w-4" />
-                          ) : (
-                            <Copy className="h-4 w-4" />
-                          )}
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-
-                  <Separator />
-
                   <div id="production">
-                    <h3 className="text-lg font-semibold mb-3 flex items-center">
-                      <Zap className="h-5 w-5 mr-2 text-yellow-600" />
-                      Production Checklist
-                    </h3>
                     <div className="grid md:grid-cols-2 gap-4">
                       <div className="space-y-3">
                         <h4 className="font-medium text-gray-900">Security</h4>
@@ -838,7 +698,7 @@ docker run -p 5000:5000 jwt-auth-demo`,
                     className="h-12 justify-start"
                     asChild
                   >
-                    <a href="#">
+                    <a href="https://github.com/JaimanSoni/jwt-auth-starter">
                       <Github className="h-4 w-4 mr-2" />
                       GitHub Repository
                     </a>
@@ -848,20 +708,11 @@ docker run -p 5000:5000 jwt-auth-demo`,
                     className="h-12 justify-start"
                     asChild
                   >
-                    <a href="#">
+                    <a href="https://github.com/JaimanSoni/jwt-auth-starter">
                       <ExternalLink className="h-4 w-4 mr-2" />
                       Report Issues
                     </a>
                   </Button>
-                </div>
-                <div className="text-center text-sm text-gray-600">
-                  Need help? Contact us at{" "}
-                  <a
-                    href="#"
-                    className="text-indigo-600 hover:text-indigo-500 font-medium"
-                  >
-                    support@jwtauthdemo.com
-                  </a>
                 </div>
               </CardContent>
             </Card>

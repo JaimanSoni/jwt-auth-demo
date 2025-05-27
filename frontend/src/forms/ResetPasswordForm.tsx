@@ -82,7 +82,7 @@ export function ResetPasswordForm() {
               <Shield className="h-8 w-8 text-white" />
             </div>
           </div>
-          <h1 className="text-2xl font-bold text-gray-900">JWT Auth Demo</h1>
+          <h1 className="text-2xl font-bold text-gray-900">JWT Auth Starter</h1>
           <p className="text-gray-600">Reset your password</p>
         </div>
         <form action="" onSubmit={handleSubmit(onSubmit)}>

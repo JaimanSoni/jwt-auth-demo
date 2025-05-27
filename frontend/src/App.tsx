@@ -13,10 +13,16 @@ import ResetPassword from "./pages/ResetPassword";
 import ProtectedGuard from "./guard/ProtectedGuard";
 import { DocsPage } from "./pages/Docs";
 
+import Sticky from "./components/Sticky/Sticky";
+
 function App() {
+  const path = window.location.pathname.split("/")[1];
+
+  console.log(path);
   return (
     <>
       <Toaster />
+      {path === "docs" ? null : <Sticky />}
       <BrowserRouter>
         <Routes>
           {/* protected route  */}

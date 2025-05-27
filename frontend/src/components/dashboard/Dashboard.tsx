@@ -80,10 +80,11 @@ export function Dashboard() {
               <h2 className="text-3xl font-bold mb-4">
                 Welcome to JWT Auth Starter!
               </h2>
-              <p className="text-blue-100 text-lg mb-6">
-                You've successfully authenticated! This enterprise-grade
-                authentication system demonstrates secure JWT implementation
-                with Node.js, Express, and React.
+              <p className="text-blue-100 text-md mb-6">
+                You've successfully authenticated! JWT Auth Starter is a
+                production-ready boilerplate for building secure, scalable
+                authentication systems using JSON Web Tokens. Ideal for
+                developers seeking a solid foundation for modern auth workflows.
               </p>
               <div className="flex flex-wrap gap-3">
                 <Badge
@@ -121,7 +122,7 @@ export function Dashboard() {
                 Quick Start Guide
               </CardTitle>
               <CardDescription>
-                Get started with this JWT authentication demo in minutes
+                Get started with this JWT authentication starter in minutes
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -140,7 +141,7 @@ export function Dashboard() {
                     </p>
                     <div className="bg-gray-100 rounded-lg p-3 mt-2 font-mono text-sm">
                       git clone
-                      https://github.com/yourusername/jwt-auth-demo.git
+                      https://github.com/JaimanSoni/jwt-auth-starter.git
                     </div>
                   </div>
                 </div>
@@ -157,7 +158,11 @@ export function Dashboard() {
                       Install both backend and frontend dependencies
                     </p>
                     <div className="bg-gray-100 rounded-lg p-3 mt-2 font-mono text-sm">
-                      npm install && cd client && npm install
+                      <p>cd backend</p>
+                      <p>npm install</p>
+                      <p>cd ..</p>
+                      <p>cd frontend</p>
+                      <p>npm install</p>
                     </div>
                   </div>
                 </div>
@@ -174,7 +179,11 @@ export function Dashboard() {
                       Set up your environment variables for JWT and database
                     </p>
                     <div className="bg-gray-100 rounded-lg p-3 mt-2 font-mono text-sm">
-                      cp .env.example .env
+                      <p>cd backend</p>
+                      <p>cp .env.example .env</p>
+                      <p>cd ..</p>
+                      <p>cd frontend</p>
+                      <p>cp .env.example .env</p>
                     </div>
                   </div>
                 </div>
@@ -208,14 +217,21 @@ export function Dashboard() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
-                <Button className="w-full" variant="outline">
-                  <Download className="h-4 w-4 mr-2" />
-                  Clone Repository
-                </Button>
-                <Button className="w-full" variant="outline">
-                  <ExternalLink className="h-4 w-4 mr-2" />
-                  View on GitHub
-                </Button>
+                <a
+                  className="flex "
+                  href="https://github.com/JaimanSoni/jwt-auth-starter.git"
+                >
+                  <Button className="w-full" variant="outline">
+                    <Download className="h-4 w-4 mr-2" />
+                    Clone Repository
+                  </Button>
+                </a>
+                <a href="https://github.com/JaimanSoni/jwt-auth-starter">
+                  <Button className="w-full" variant="outline">
+                    <ExternalLink className="h-4 w-4 mr-2" />
+                    View on GitHub
+                  </Button>
+                </a>
               </CardContent>
             </Card>
 
@@ -362,7 +378,7 @@ export function Dashboard() {
                 <div className="flex items-center justify-between p-3 bg-green-50 rounded-lg">
                   <div>
                     <span className="font-mono text-sm">
-                      POST /api/auth/register
+                      POST /v1/auth/register
                     </span>
                     <p className="text-xs text-gray-600 mt-1">
                       User registration
@@ -378,7 +394,7 @@ export function Dashboard() {
                 <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
                   <div>
                     <span className="font-mono text-sm">
-                      POST /api/auth/login
+                      POST /v1/auth/login
                     </span>
                     <p className="text-xs text-gray-600 mt-1">
                       User authentication
@@ -391,12 +407,28 @@ export function Dashboard() {
                     POST
                   </Badge>
                 </div>
+                <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
+                  <div>
+                    <span className="font-mono text-sm">
+                      GET /v1/auth/refresh-token
+                    </span>
+                    <p className="text-xs text-gray-600 mt-1">
+                      Refresh Access Token
+                    </p>
+                  </div>
+                  <Badge
+                    variant="secondary"
+                    className="bg-blue-100 text-blue-700"
+                  >
+                    GET
+                  </Badge>
+                </div>
               </div>
               <div className="space-y-3">
                 <div className="flex items-center justify-between p-3 bg-orange-50 rounded-lg">
                   <div>
                     <span className="font-mono text-sm">
-                      POST /api/auth/forgot-password
+                      POST /v1/auth/forgot-password
                     </span>
                     <p className="text-xs text-gray-600 mt-1">
                       Password reset request
@@ -412,7 +444,7 @@ export function Dashboard() {
                 <div className="flex items-center justify-between p-3 bg-purple-50 rounded-lg">
                   <div>
                     <span className="font-mono text-sm">
-                      POST /api/auth/reset-password
+                      POST /v1/auth/reset-password
                     </span>
                     <p className="text-xs text-gray-600 mt-1">
                       Password reset confirmation
