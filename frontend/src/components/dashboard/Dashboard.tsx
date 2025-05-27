@@ -23,10 +23,12 @@ import {
 } from "lucide-react";
 import axios from "@/api/axiosInstance";
 import { useNavigate } from "react-router-dom";
+import { dismissToast, showLoading } from "@/utils/toasterUtils";
 
 export function Dashboard() {
   const navigate = useNavigate();
   const handleLogout = async () => {
+    const toasdID = showLoading("Signing Out");
     try {
       await axios.post(
         "/auth/logout",
@@ -35,7 +37,7 @@ export function Dashboard() {
           withCredentials: true,
         }
       );
-
+      dismissToast(toasdID);
       navigate("/login");
     } catch (error) {
       console.error("Logout failed:", error);
@@ -114,8 +116,8 @@ export function Dashboard() {
         </div>
 
         {/* Quick Start Guide */}
-        <div className="grid lg:grid-cols-3 gap-6 mb-8">
-          <Card className="lg:col-span-2">
+        <div className="grid lg:grid-cols-3 gap-6 mb-8 ">
+          <Card className="lg:col-span-2 min-w-[220px]">
             <CardHeader>
               <CardTitle className="flex items-center">
                 <BookOpen className="h-5 w-5 mr-2 text-blue-600" />
@@ -127,8 +129,8 @@ export function Dashboard() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-4">
-                <div className="flex items-start space-x-3">
-                  <div className="bg-blue-100 text-blue-600 rounded-full p-1 text-sm font-bold min-w-[24px] h-6 flex items-center justify-center">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:space-x-3 space-y-2 sm:space-y-0">
+                  <div className="bg-blue-100 text-blue-600 rounded-full p-1 text-sm font-bold w-6 h-6 flex items-center justify-center">
                     1
                   </div>
                   <div>
@@ -139,15 +141,15 @@ export function Dashboard() {
                       Clone the GitHub repository to get the complete source
                       code
                     </p>
-                    <div className="bg-gray-100 rounded-lg p-3 mt-2 font-mono text-sm">
+                    <div className="bg-gray-100 rounded-lg p-3 mt-2 font-mono text-sm break-words">
                       git clone
                       https://github.com/JaimanSoni/jwt-auth-starter.git
                     </div>
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-3">
-                  <div className="bg-blue-100 text-blue-600 rounded-full p-1 text-sm font-bold min-w-[24px] h-6 flex items-center justify-center">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:space-x-3 space-y-2 sm:space-y-0">
+                  <div className="bg-blue-100 text-blue-600 rounded-full p-1 text-sm font-bold w-6 h-6 flex items-center justify-center">
                     2
                   </div>
                   <div>
@@ -167,8 +169,8 @@ export function Dashboard() {
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-3">
-                  <div className="bg-blue-100 text-blue-600 rounded-full p-1 text-sm font-bold min-w-[24px] h-6 flex items-center justify-center">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:space-x-3 space-y-2 sm:space-y-0">
+                  <div className="bg-blue-100 text-blue-600 rounded-full p-1 text-sm font-bold w-6 h-6 flex items-center justify-center">
                     3
                   </div>
                   <div>
@@ -188,8 +190,8 @@ export function Dashboard() {
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-3">
-                  <div className="bg-blue-100 text-blue-600 rounded-full p-1 text-sm font-bold min-w-[24px] h-6 flex items-center justify-center">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:space-x-3 space-y-2 sm:space-y-0">
+                  <div className="bg-blue-100 text-blue-600 rounded-full p-1 text-sm font-bold w-6 h-6 flex items-center justify-center">
                     4
                   </div>
                   <div>

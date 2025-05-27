@@ -42,27 +42,29 @@ export function DocsPage() {
       <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-3 sm:space-x-4">
               <div className="bg-gradient-to-r from-indigo-600 to-blue-600 p-2 rounded-lg">
-                <Shield className="h-6 w-6 text-white" />
+                <Shield className=" h-4 sm:h-6 w-4 sm:w-6 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-gray-900">
+                <h1 className=" text-lg sm:text-xl font-bold text-gray-900">
                   JWT Auth Starter
                 </h1>
-                <p className="text-sm text-gray-600">Documentation</p>
+                <p className=" text-xs sm:text-sm text-gray-600">
+                  Documentation
+                </p>
               </div>
             </div>
-            <div className="flex items-center space-x-3">
+            <div className="flex flex-col sm:flex-row items-end sm:items-center gap-y-2 sm:space-x-3">
               <Button variant="outline" size="sm" asChild>
                 <a href="/dashboard">
-                  <ArrowRight className="h-4 w-4 mr-2" />
+                  <ArrowRight className="h-3 sm:h-4 w-3 sm:w-4 sm:mr-2" />
                   Dashboard
                 </a>
               </Button>
               <Button variant="outline" size="sm" asChild>
                 <a href="/">
-                  <ArrowRight className="h-4 w-4 mr-2" />
+                  <ArrowRight className="h-4  w-4 sm:mr-2" />
                   Sign In
                 </a>
               </Button>
@@ -75,9 +77,11 @@ export function DocsPage() {
         {/* Hero Section */}
         <div className="text-center mb-12">
           <div className="bg-gradient-to-r from-indigo-600 to-blue-600 rounded-2xl p-8 text-white mb-8">
-            <BookOpen className="h-16 w-16 mx-auto mb-4 opacity-90" />
-            <h2 className="text-4xl font-bold mb-4">Documentation</h2>
-            <p className="text-indigo-100 text-lg max-w-2xl mx-auto">
+            <BookOpen className=" h-12 sm:h-16 w-12 sm:w-16 mx-auto mb-4 opacity-90" />
+            <h2 className="text-2xl sm:text-4xl font-bold mb-4">
+              Documentation
+            </h2>
+            <p className="text-indigo-100 text-sm sm:text-lg max-w-3xl mx-auto">
               Complete guide to implementing and customizing the JWT
               Authentication Starter. Learn how to integrate secure
               authentication into your applications.
@@ -217,10 +221,10 @@ export function DocsPage() {
           </div>
 
           {/* Main Content */}
-          <div className="lg:col-span-3 space-y-8">
+          <div className="lg:col-span-3 space-y-8 min-w-[220px]">
             {/* Getting Started */}
-            <section id="getting-started">
-              <Card>
+            <section id="getting-started" className="w-full">
+              <Card className="">
                 <CardHeader>
                   <CardTitle className="flex items-center text-2xl">
                     <Zap className="h-6 w-6 mr-3 text-yellow-600" />
@@ -243,7 +247,7 @@ export function DocsPage() {
                           1. Clone the repository
                         </p>
                         <div className="bg-gray-900 rounded-lg p-4 relative">
-                          <code className="text-green-400 text-sm font-mono">
+                          <code className="text-green-400 text-sm font-mono flex overflow-scroll">
                             git clone
                             https://github.com/JaimanSoni/jwt-auth-starter.git
                           </code>
@@ -265,6 +269,7 @@ export function DocsPage() {
                             )}
                           </Button>
                         </div>
+                        
                       </div>
 
                       <div>
@@ -273,7 +278,7 @@ export function DocsPage() {
                           dependencies
                         </p>
                         <div className="bg-gray-900 rounded-lg p-4 relative">
-                          <code className="text-green-400 text-sm font-mono">
+                          <code className="text-green-400 text-sm font-mono  overflow-scroll">
                             cd backend
                             <br />
                             npm install
@@ -286,7 +291,7 @@ export function DocsPage() {
                             className="absolute top-2 right-2 text-gray-400 "
                             onClick={() =>
                               copyToClipboard(
-                                "cd backend && npm install && cp .env.sample .env",
+                                "cd backend \n npm install \n cp .env.sample .env",
                                 "cd"
                               )
                             }
@@ -305,7 +310,7 @@ export function DocsPage() {
                           dependencies
                         </p>
                         <div className="bg-gray-900 rounded-lg p-4 relative">
-                          <code className="text-green-400 text-sm font-mono">
+                          <code className="text-green-400 text-sm font-mono  overflow-scroll">
                             cd frontend
                             <br />
                             npm install
@@ -541,7 +546,7 @@ export function DocsPage() {
                       <div>
                         <h4 className="font-medium mb-2">User Registration</h4>
                         <div className="bg-gray-900 rounded-lg p-4 relative">
-                          <pre className="text-green-400 text-sm font-mono">
+                          <pre className="text-green-400 text-sm font-mono overflow-scroll">
                             {`POST /api/auth/register
 Content-Type: application/json
 
@@ -581,7 +586,7 @@ Content-Type: application/json
                       <div>
                         <h4 className="font-medium mb-2">User Login</h4>
                         <div className="bg-gray-900 rounded-lg p-4 relative">
-                          <pre className="text-green-400 text-sm font-mono">
+                          <pre className="text-green-400 text-sm font-mono  overflow-scroll">
                             {`POST /api/auth/login
 Content-Type: application/json
 
