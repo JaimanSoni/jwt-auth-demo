@@ -1,26 +1,25 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-require("dotenv").config();
-const express_1 = __importDefault(require("express"));
-const cors_1 = __importDefault(require("cors"));
-const cookie_parser_1 = __importDefault(require("cookie-parser"));
-const db_config_1 = require("./config/db.config");
-const routes_1 = __importDefault(require("./routes"));
-const errorHandler_1 = require("./middlewares/errorHandler");
+import { config } from "dotenv";
+import express from "express";
+import cors from "cors";
+import cookieParser from "cookie-parser";
+import { connectToDb } from "./config/db.config.js";
+import router from "./routes";
+import { errorHandler } from "./middlewares/errorHandler.js";
+config();
 const PORT = process.env.PORT || 5000;
-(0, db_config_1.connectToDb)();
-const app = (0, express_1.default)();
-app.use((0, cors_1.default)({
-    origin: process.env.CLIENT_URL || "http://localhost:5173",
+connectToDb();
+const app = express();
+const NODE_ENV = process.env.NODE_ENV;
+app.use(cors({
+    origin: NODE_ENV === "development"
+        ? process.env.LOCAL_CLIENT_URL || "http://localhost:5173"
+        : process.env.HOSTED_CLIENT_URL,
     credentials: true,
 }));
-app.use(express_1.default.json());
-app.use((0, cookie_parser_1.default)());
-app.use("/v1", routes_1.default);
-app.use(errorHandler_1.errorHandler);
+app.use(express.json());
+app.use(cookieParser());
+app.use("/v1", router);
+app.use(errorHandler);
 app.listen(PORT, () => {
     console.log(`Server running on port: ${PORT}`);
 });

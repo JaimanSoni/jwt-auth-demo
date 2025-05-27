@@ -1,23 +1,23 @@
 import asyncHandler from "express-async-handler";
 import crypto from "crypto";
 import { Request, Response } from "express";
-import { APIError } from "../utils/APIError.js";
-import { httpStatus } from "../utils/httpStatus.js";
-import { generateUsername } from "../utils/generateUsername.js";
-import { RegisterRequestBody } from "../types/index.js";
-import { User } from "../models/user.model.js";
-import { UserRegisterSchema, UserLoginSchema } from "../validations/index.js";
-import { APIResponse } from "../utils/APIResponse.js";
+import { APIError } from "../utils/APIError";
+import { httpStatus } from "../utils/httpStatus";
+import { generateUsername } from "../utils/generateUsername";
+import { RegisterRequestBody } from "../types/index";
+import { User } from "../models/user.model";
+import { UserRegisterSchema, UserLoginSchema } from "../validations/index";
+import { APIResponse } from "../utils/APIResponse";
 import {
   accessTokenCookieOptions,
   refreshTokenCookieOptions,
-} from "../utils/cookieOptions.js";
+} from "../utils/cookieOptions";
 import {
   generateRefreshToken,
   generateAccessToken,
   verifyRefreshToken,
-} from "../utils/tokenUtils.js";
-import { sendResetEmail } from "../utils/emailUtils.js";
+} from "../utils/tokenUtils";
+import { sendResetEmail } from "../utils/emailUtils";
 
 export const register = asyncHandler(
   async (

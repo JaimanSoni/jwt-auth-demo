@@ -1,5 +1,5 @@
-"use strict";
-const userRouter = require("./user.routes");
-const router = require("express").Router();
+import userRouter from "./user.routes.js";
+import { Router } from "express";
+const router = Router();
 router.use("/auth", userRouter);
-module.exports = router;
+export default router;

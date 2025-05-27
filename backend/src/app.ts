@@ -1,11 +1,10 @@
-import { config } from "dotenv";
+require("dotenv").config();
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import { connectToDb } from "./config/db.config";
 import router from "./routes";
 import { errorHandler } from "./middlewares/errorHandler";
-config();
 
 const PORT = process.env.PORT || 5000;
 connectToDb();

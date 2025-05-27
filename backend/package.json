@@ -1,13 +1,12 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "main": "./src/app.ts",
-  "type": "module",
+  "main": "src/app.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc --build",
     "start": "node ./dist/app.js",
-    "dev": "nodemon ./src/app.ts"
+    "dev": "nodemon src/app.ts"
   },
   "keywords": [],
   "author": "",
