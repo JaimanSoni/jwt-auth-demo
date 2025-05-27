@@ -46,6 +46,7 @@ This repository provides a complete starter kit for implementing authentication 
 git clone https://github.com/jaimansoni/jwt-auth-starter.git
 cd jwt-auth-starter
 
+### 2. Install dependencies on both backend and frontend
 cd backend
 npm install
 cp .env.sample .env
