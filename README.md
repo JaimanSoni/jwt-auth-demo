@@ -10,8 +10,7 @@ This repository provides a complete starter kit for implementing authentication 
 
 ## 🌐 Live Demo
 
-- **Frontend**: [vercel.app](https://your-frontend-url.vercel.app)
-- **Backend**: [render.com](https://your-backend-url.onrender.com)
+- **Frontend**: [https://jwt-auth-starter.vercel.app/](https://jwt-auth-starter.vercel.app/)
 
 ---
 
@@ -44,5 +43,16 @@ This repository provides a complete starter kit for implementing authentication 
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/your-username/jwt-auth-starter.git
+git clone https://github.com/jaimansoni/jwt-auth-starter.git
 cd jwt-auth-starter
+
+cd backend
+npm install
+cp .env.sample .env
+npm run dev
+
+cd frontend
+npm install
+cp .env.sample .env
+npm run dev
+
