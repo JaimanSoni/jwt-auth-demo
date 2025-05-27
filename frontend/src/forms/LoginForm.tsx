@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -28,7 +28,23 @@ type LoginData = {
 
 export function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        await axios.get("/auth/refresh-token", { withCredentials: true });
+        navigate("/dashboard");
+      } catch {
+        setLoading(false);
+      } finally {
+        setLoading(false);
+      }
+    };
+    checkAuth();
+  }, []);
+
   const { register, handleSubmit } = useForm<LoginData>({
     defaultValues: {
       email: "",
@@ -57,6 +73,13 @@ export function LoginForm() {
       showError(errorMessage);
     }
   };
+  if (loading) {
+    return (
+      <div className="min-h-screen min-w-screen flex items-center justify-center h-fit w-fit bg-white">
+        <div className="animate-spin w-[50px] h-[50px] border-2 border-black border-t-transparent rounded-full "></div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4">

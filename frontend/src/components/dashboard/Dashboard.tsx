@@ -412,6 +412,22 @@ export function Dashboard() {
                 <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
                   <div>
                     <span className="font-mono text-sm">
+                      POST /v1/auth/logout
+                    </span>
+                    <p className="text-xs text-gray-600 mt-1">
+                      User logout
+                    </p>
+                  </div>
+                  <Badge
+                    variant="secondary"
+                    className="bg-blue-100 text-blue-700"
+                  >
+                    POST
+                  </Badge>
+                </div>
+                <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
+                  <div>
+                    <span className="font-mono text-sm">
                       GET /v1/auth/refresh-token
                     </span>
                     <p className="text-xs text-gray-600 mt-1">
