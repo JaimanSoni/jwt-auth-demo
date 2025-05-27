@@ -11,9 +11,14 @@ connectToDb();
 
 const app = express();
 
+const NODE_ENV = process.env.NODE_ENV;
+
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || "http://localhost:5173",
+    origin:
+      NODE_ENV === "development"
+        ? process.env.LOCAL_CLIENT_URL || "http://localhost:5173"
+        : process.env.HOSTED_CLIENT_URL,
     credentials: true,
   })
 );
