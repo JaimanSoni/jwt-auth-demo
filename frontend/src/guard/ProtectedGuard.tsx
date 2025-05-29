@@ -25,6 +25,20 @@ export default function ProtectedGuard({ children }: ProtectedGuardProps) {
     checkAuth();
   }, []);
 
+  useEffect(() => {
+    const handleStorageChange = (event: StorageEvent) => {
+      if (event.key === "logout") {
+        window.location.href = "/login";
+      }
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
+
   if (loading) {
     return (
       <div className="min-h-screen min-w-screen flex items-center justify-center h-fit w-fit bg-white">

@@ -37,6 +37,7 @@ export function Dashboard() {
           withCredentials: true,
         }
       );
+      localStorage.setItem("logout", JSON.stringify(Date.now()));
       dismissToast(toasdID);
       navigate("/login");
     } catch (error) {
@@ -414,9 +415,7 @@ export function Dashboard() {
                     <span className="font-mono text-sm">
                       POST /v1/auth/logout
                     </span>
-                    <p className="text-xs text-gray-600 mt-1">
-                      User logout
-                    </p>
+                    <p className="text-xs text-gray-600 mt-1">User logout</p>
                   </div>
                   <Badge
                     variant="secondary"
